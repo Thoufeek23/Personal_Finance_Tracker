@@ -23,24 +23,25 @@ Technologies Used:
 Prerequisite:
 Python 3.x installed on your machine.
 
-Steps to run:
-  >git clone https://github.com/your-username/Income_manager.git
-  >cd Income_manager
-  >python -m venv venv
-    >venv\Scripts\activate (For Windows)
-    >source venv/bin/activate (For macOS/Linux)
-  >pip install -r requirements.txt
-  >python app.py
+
+Steps to run (Paste the following commands in terminal):
+  ->git clone https://github.com/your-username/Income_manager.git
+  ->cd Income_manager
+  ->python -m venv venv
+    ->venv\Scripts\activate (For Windows)
+    ->source venv/bin/activate (For macOS/Linux)
+  ->pip install -r requirements.txt
+  ->python app.py
 
 http://127.0.0.1:5000/login
 
 To create userid-password:
-  >python
-  >from app import db, User
-  >new_user = User(username='your_username', password='your_password')
-  >db.session.add(new_user)
-  >db.session.commit()
-  >exit()
+  ->python
+  ->from app import db, User
+  ->new_user = User(username='your_username', password='your_password')
+  ->db.session.add(new_user)
+  ->db.session.commit()
+  ->exit()
 
 
 
