@@ -35,6 +35,8 @@ Python 3.x installed on your machine.
 
 http://127.0.0.1:5000/login
 
+Click the link to open the project
+
 *To create userid-password:*
   * >python
   * >from app import db, User
