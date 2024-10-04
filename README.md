@@ -33,9 +33,13 @@ Python 3.x installed on your machine.
   * >pip install -r requirements.txt
   * >python app.py
 
+
+
 http://127.0.0.1:5000/login
 
 Click the link to open the project
+
+
 
 *To create userid-password:*
   * >python
