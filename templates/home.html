@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_home.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center">
+        <header class="hero">
+            <h1>Welcome to the Personal Finance Tracker!</h1>
+            <p class="lead">Your journey to financial freedom starts here. Track your income, expenses, and savings effortlessly.</p>
+            <div class="mt-4">
+                <a href="{{ url_for('register') }}" class="btn btn-success btn-lg">Create an Account</a>
+                <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg">Login</a>
+            </div>
+        </header>
+        
+        <section class="features mt-5">
+            <h2>Why Choose Us?</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h3>Track Expenses</h3>
+                        <p>Keep track of your spending with ease. Our app helps you manage your finances effortlessly.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h3>Set Budgets</h3>
+                        <p>Set monthly budgets and stay on track. Receive alerts when you're nearing your limits.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <h3>Analyze Trends</h3>
+                        <p>Get insights into your financial habits with detailed reports and visualizations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-5">
+            <p>&copy; {{ current_year }} 2024 Mohamed Thoufeek Ali. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

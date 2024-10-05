@@ -7,16 +7,8 @@ h2, h3, h4 {
     color: #343a40;
 }
 
-.navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .container {
     margin-top: 50px;
-}
-
-.alert {
-    margin-top: 20px;
 }
 
 .table {
@@ -35,3 +27,5 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+

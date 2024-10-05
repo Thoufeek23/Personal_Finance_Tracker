@@ -1,0 +1,81 @@
+/* General Styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hero Section Styles */
+.hero {
+    background: linear-gradient(to right, #28a745, #218838);
+    color: white;
+    padding: 50px 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.hero p.lead {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+/* Button Styles */
+.btn-success, .btn-primary {
+    background-color: #cedb21; /* Custom button color */
+    border: none; /* Remove the border */
+    color: #000; /* Text color */
+    transition: background-color 0.3s, transform 0.3s; /* Transition effects */
+}
+
+.btn-success:hover, .btn-primary:hover {
+    background-color: #b9c513; /* Darker shade for hover effect */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Features Section Styles */
+.features {
+    padding: 40px 0;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #343a40;
+}
+
+.feature-card {
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s; /* Animation for hover effect */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .feature-card {
+        margin-bottom: 20px; /* More spacing on mobile */
+    }
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #6c757d; /* Grey color for footer text */
+}
