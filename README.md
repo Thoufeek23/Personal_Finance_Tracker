@@ -31,7 +31,11 @@ Python 3.x installed on your machine.
     * >venv\Scripts\activate (For Windows)
     * >source venv/bin/activate (For macOS/Linux)
   * >pip install -r requirements.txt
-  * >python app.py
+  * >pip install Flask-Migrate
+  * >flask db init
+  * >flask db migrate -m "Initial migration."
+  * >flask db upgrade
+  * >flask run
 
 
 
