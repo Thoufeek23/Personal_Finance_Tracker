@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <h3 class="mt-5">Your Financial Records</h3>
+
+<!-- Display total spendings -->
+<div class="total-spendings mt-4">
+    <h4>Total Spendings: ${{ total_spendings }}</h4>
+</div>
+
 <form method="POST" action="{{ url_for('add_record') }}" class="mt-4">
     <h4>Add a New Record</h4>
     <div class="form-row">
@@ -33,7 +39,7 @@
             <th>Amount</th>
             <th>Description</th>
             <th>Category</th>
-            <th>Date Added</th> <!-- Add this header if you want to display the date -->
+            <th>Date Added</th>
         </tr>
     </thead>
     <tbody>
@@ -48,4 +54,3 @@
     </tbody>
 </table>
 {% endblock %}
-
