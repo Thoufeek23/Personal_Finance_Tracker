@@ -26,6 +26,7 @@ Python 3.x installed on your machine.
 
 *Steps to run (Paste the following commands in terminal):*
   * >git clone https://github.com/your-username/Personal_Finance_Tracker.git
+  * >cd Personal_Finance_Tracker
   * >python -m venv venv
     * >venv\Scripts\activate (For Windows)
     * >source venv/bin/activate (For macOS/Linux)
