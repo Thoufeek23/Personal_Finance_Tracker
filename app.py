@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, Response
+from flask import Flask, render_template, redirect, url_for, request, flash, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -58,9 +58,21 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password, password):
-            login_user(user)
-            return redirect(url_for('dashboard'))
+        
+        # If user not found
+        if not user:
+            flash('User not registered', 'danger')
+            return redirect(url_for('login'))
+        
+        # If password is incorrect
+        if not check_password_hash(user.password, password):
+            flash('Incorrect password, please try again.', 'danger')
+            return redirect(url_for('login'))
+
+        # If login is successful
+        login_user(user)
+        return redirect(url_for('dashboard'))
+
     return render_template('login.html')
 
 @app.route('/dashboard')
