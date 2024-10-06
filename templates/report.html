@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Spending Report</h2>
+        <div class="mt-4">
+            <h4>Spending by Category</h4>
+            <img src="data:image/png;base64,{{ pie_chart_url }}" class="img-fluid" alt="Spending Pie Chart">
+        </div>
+        
+        <div class="mt-4">
+            <h4>Category-wise Total Spendings</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category, total in categories.items() %}
+                    <tr>
+                        <td>{{ category }}</td>
+                        <td>${{ total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

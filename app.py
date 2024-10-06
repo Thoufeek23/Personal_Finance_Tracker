@@ -1,18 +1,20 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, Response
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate  # Ensure Migrate is imported
+from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+import matplotlib.pyplot as plt
+import io
+import base64
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db'
-app.config['SECRET_KEY'] = 'your_secret_key'  # Replace with a strong secret key
+app.config['SECRET_KEY'] = 'your_secret_key'
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)  # Initialize Flask-Migrate
+migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'login'  # Redirect to login if user is not authenticated
 
 # User model
 class User(db.Model, UserMixin):
@@ -26,15 +28,11 @@ class FinanceRecord(db.Model):
     amount = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(150), nullable=False)
     category = db.Column(db.String(50), nullable=False)
-    date_added = db.Column(db.DateTime, default=datetime.utcnow)  # Automatically set the current date and time
+    date_added = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     user = db.relationship('User', backref='records')
 
-    def __repr__(self):
-        return f'<Record {self.amount}, {self.description}, {self.date_added}, {self.category}>'
-
-# Load the current user for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -68,12 +66,8 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    # Fetch records for the logged-in user
     records = FinanceRecord.query.filter_by(user_id=current_user.id).all()
-    
-    # Calculate total spendings
     total_spendings = sum(record.amount for record in records)
-    
     return render_template('dashboard.html', records=records, total_spendings=total_spendings)
 
 @app.route('/add_record', methods=['POST'])
@@ -87,6 +81,31 @@ def add_record():
     db.session.commit()
     return redirect(url_for('dashboard'))
 
+@app.route('/report')
+@login_required
+def report():
+    # Fetch records by category
+    records = FinanceRecord.query.filter_by(user_id=current_user.id).all()
+    
+    categories = {}
+    for record in records:
+        if record.category in categories:
+            categories[record.category] += record.amount
+        else:
+            categories[record.category] = record.amount
+    
+    # Generate pie chart
+    img = io.BytesIO()
+    plt.figure(figsize=(5, 5))
+    plt.pie(categories.values(), labels=categories.keys(), autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
+    plt.axis('equal')
+    plt.title('Spending by Category')
+    plt.savefig(img, format='png')
+    img.seek(0)
+    pie_chart_url = base64.b64encode(img.getvalue()).decode()
+
+    return render_template('report.html', pie_chart_url=pie_chart_url, categories=categories)
+
 @app.route('/logout')
 @login_required
 def logout():
@@ -94,5 +113,5 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    db.create_all()  # Create database tables on first run
+    db.create_all()
     app.run(debug=True)

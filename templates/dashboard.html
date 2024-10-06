@@ -2,11 +2,7 @@
 {% block content %}
 <h3 class="mt-5">Your Financial Records</h3>
 
-<!-- Display total spendings -->
-<div class="total-spendings mt-4">
-    <h4>Total Spendings: ${{ total_spendings }}</h4>
-</div>
-
+<!-- Add record form -->
 <form method="POST" action="{{ url_for('add_record') }}" class="mt-4">
     <h4>Add a New Record</h4>
     <div class="form-row">
@@ -21,7 +17,6 @@
         <div class="form-group col-md-4">
             <label for="category">Category</label>
             <select name="category" class="form-control" required>
-                <option value="">Select...</option>
                 <option value="Shopping">Shopping</option>
                 <option value="Groceries">Groceries</option>
                 <option value="Food">Food</option>
@@ -33,13 +28,16 @@
     <button type="submit" class="btn btn-success">Add Record</button>
 </form>
 
+<!-- Show total spendings -->
+<h4 class="mt-5">Total Spendings: ${{ total_spendings }}</h4>
+
+<!-- Financial records table -->
 <table class="table table-striped mt-4">
     <thead class="thead-dark">
         <tr>
             <th>Amount</th>
             <th>Description</th>
             <th>Category</th>
-            <th>Date Added</th>
         </tr>
     </thead>
     <tbody>
@@ -48,9 +46,14 @@
                 <td>${{ record.amount }}</td>
                 <td>{{ record.description }}</td>
                 <td>{{ record.category }}</td>
-                <td>{{ record.date_added.strftime('%Y-%m-%d %H:%M:%S') }}</td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<!-- Add a button to go to the report page -->
+<div class="mt-5">
+    <a href="{{ url_for('report') }}" class="btn btn-primary btn-lg">View Spending Report</a>
+</div>
+
 {% endblock %}
