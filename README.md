@@ -42,7 +42,7 @@ Python 3.x installed on your machine.
 
 
 
-http://127.0.0.1:5000/login
+http://127.0.0.1:5000/
 
 Click the link to open the project
 
