@@ -35,6 +35,9 @@ Python 3.x installed on your machine.
   * >flask db init
   * >flask db migrate -m "Initial migration."
   * >flask db upgrade
+  * >pip install matplotlib
+  * >flask db migrate
+  * >flask db upgrade
   * >flask run
 
 
