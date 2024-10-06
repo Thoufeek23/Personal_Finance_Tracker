@@ -25,7 +25,7 @@ Python 3.x installed on your machine.
 
 
 *Steps to run (Paste the following commands in terminal):*
-  * >git clone https://github.com/your-username/Income_manager.git
+  * >git clone https://github.com/your-username/Personal_Finance_Tracker.git
   * >cd Income_manager
   * >python -m venv venv
     * >venv\Scripts\activate (For Windows)
